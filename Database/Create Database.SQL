@@ -1,3 +1,6 @@
+Create database QEOApp;
+use QEOApp;
+
 CREATE TABLE clientes (
     id_cliente INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL,
@@ -30,6 +33,14 @@ CREATE TABLE estado  (
 	CONSTRAINT pkIdEstado PRIMARY KEY (id_estado)
 );
 
+CREATE TABLE metodo_pago (
+    id_pago INT NOT NULL AUTO_INCREMENT,
+    descripcion varchar(100),
+
+	CONSTRAINT pkIdPago PRIMARY KEY (id_pago)
+);
+
+
 CREATE TABLE orden  (
     id_orden INT NOT NULL AUTO_INCREMENT,
     id_cliente int,
@@ -42,7 +53,8 @@ CREATE TABLE orden  (
 
 	CONSTRAINT pkIdorden PRIMARY KEY (id_orden),
 	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
-	CONSTRAINT fk_id_mesa FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa)
+	CONSTRAINT fk_id_mesa FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa),
+	CONSTRAINT fk_id_metodo_pago FOREIGN KEY (id_metodo_pago) REFERENCES metodo_pago(id_metodo_pago)
 );
 
 CREATE TABLE orden_detalle  (
@@ -60,13 +72,6 @@ CREATE TABLE orden_detalle  (
 	CONSTRAINT fk_idEstado FOREIGN KEY (id_estado) REFERENCES estado(id_estado)
 );
 
-
-CREATE TABLE metodo_pago (
-    id_pago INT NOT NULL AUTO_INCREMENT,
-    descripcion varchar(100),
-
-	CONSTRAINT pkIdPago PRIMARY KEY (id_pago)
-);
 
 /*
 #Las siguientes tablas no son creadas, ya que el alcance del proyecto se redujo.
