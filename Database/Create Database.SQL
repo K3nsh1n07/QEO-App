@@ -54,7 +54,7 @@ CREATE TABLE orden  (
 	CONSTRAINT pkIdorden PRIMARY KEY (id_orden),
 	CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
 	CONSTRAINT fk_id_mesa FOREIGN KEY (id_mesa) REFERENCES mesa(id_mesa),
-	CONSTRAINT fk_id_metodo_pago FOREIGN KEY (id_metodo_pago) REFERENCES metodo_pago(id_metodo_pago)
+	CONSTRAINT fk_id_metodo_pago FOREIGN KEY (id_metodo_pago) REFERENCES metodo_pago(id_pago)
 );
 
 CREATE TABLE orden_detalle  (
