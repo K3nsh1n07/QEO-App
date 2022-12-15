@@ -201,7 +201,6 @@ def update_orden(id):
         
         #Si esta pendiente a retirar, enviar mail
         if (entregado =='2'):
-            print("aca esto")
             cur = mysql.connection.cursor()
             cur.execute("""
                 SELECT c.email, c.nombreCompleto
@@ -214,8 +213,10 @@ def update_orden(id):
             email = resultados[0]
             nombreCompleto = resultados[1]
             tipoMail = 'estadoEntrega'
-            
-            enviar_mail(email,id,nombreCompleto,tipoMail)
+            try:
+                enviar_mail(email,id,nombreCompleto,tipoMail)
+            except:
+                print("An exception occurred")  
 
         flash('Orden Actualizada Correctamente')
         return redirect(url_for('listado_orden'))
@@ -289,7 +290,7 @@ def enviar_mail(email,OrdenId,NombreCompleto, tipoMail):
         smtp.login(email_sender,email_passwd)
         smtp.sendmail(email_sender,email_receiver, em.as_string())
     
-    print('enviado')  
+    print('enviado') 
 
 @app.route('/ordenRecibida')
 def ordenRecibida():
