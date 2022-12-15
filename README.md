@@ -15,3 +15,7 @@ Para acceder a las instrucciones de como instalar el proyecto, abrir la siguient
 
 # Presentacion de la App
 En el siguiente <a href="https://drive.google.com/file/d/1JqXbpyt2dh8dmsTn2hUB4eD27fHb1GmK/view?usp=sharing">link</a> se podra acceder a la presentacion de la App
+
+# Posibles inconvenientes
+Que no lea las librerias, para eso hacer un _developer reload window_: Abrir terminal (f1, developer reload window)<br>Que sea necesario seleccionar el interpreter, abrir la terminal, escribir _Select interpreter_ ( seleccionar del virtual env creado) 
+
