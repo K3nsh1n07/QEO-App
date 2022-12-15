@@ -14,7 +14,7 @@ Los MockUps se encuentran en la carpeta <a href="https://github.com/K3nsh1n07/QE
 Para acceder a las instrucciones de como instalar el proyecto, abrir la siguiente <a href="https://docs.google.com/document/d/1nrkfUABXP9LcJ8SRxA2G6cOHUK5Un4fkrG0qyjTrLzc/edit?usp=sharing">Documentación</a>
 
 # Presentacion de la App
-En el siguiente <a href="https://drive.google.com/file/d/1-w7COUld2PyaoJnuul7s6Lj5aWNELB0h/view?usp=sharing">link</a> se podra acceder a la presentacion de la App
+En el siguiente <a href="https://drive.google.com/file/d/1_L0gMMlagAV0n70uq3IsJSc-gttBKUwI/view?usp=share_link">link</a> se podra acceder a la presentacion de la App
 
 # Posibles inconvenientes
 Que no lea las librerias, para eso hacer un _developer reload window_: Abrir terminal (f1, developer reload window)<br>Que sea necesario seleccionar el interpreter, abrir la terminal, escribir _Select interpreter_ ( seleccionar del virtual env creado) 
