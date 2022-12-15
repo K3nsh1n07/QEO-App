@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="col-md-4 offset-md-4">
+    <div class="card card-body">
+        <div class="grid text-center">
+            <br>
+            <p class="h6">Su orden ha sido creada exitosamente</p>
+            <br>
+            <p class="h5">Numero de orden {{ordenes}}</p>
+            <br>
+            <p class="text-muted">*Espere ser llamado para abonar en caja</p>
+            <p class="text-muted">*Una vez recibido el pago sera llamado por su nombre y numero de orden</p>
+            <p class="text-muted">*Recibira notificaciones via mail</p>
+        </div>
+    </div>    
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="col-md-4 offset-md-4">
+    <div class="card card-body">
+        <form action="/add_medioPago/{{ data }}" onsubmit="return validarFormularioMedioPago();" method="post"> 
+            <div class="form-group">
+                <input type="text" name="nombreCompleto" placeholder="Nombre Completo" id="tnombreCompleto" value="" class="form-control">
+            </div>
+           
+            <div class="form-group">
+                <input type="text" name="telefono" placeholder="Telefono" value="" id="ttelefono" class="form-control">
+            </div>
+           
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" id="temail" value="" class="form-control">
+            </div>
+            
+            <div class="form-check" style="margin-top: 10px;">
+                <input class="form-check-input" type="radio" name="radioMedioPago" id="radioMedioPago1" value="1" checked>
+                <label class="form-check-label" for="radioMedioPago1">
+                  Efectivo
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="radioMedioPago" id="radioMedioPago2" value="2">
+                <label class="form-check-label" for="radioMedioPago2">
+                  Tarjeta
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="radioMedioPago" id="radioMedioPago3" value="3">
+                <label class="form-check-label" for="radioMedioPago3">
+                  MercadoPago
+                </label>
+              </div>         
+
+            <div class="form-group" style="margin-top: 10px;">
+                <a href="/delete-orden/mp/{{ data}}" class="btn btn-danger" onclick="return confirm('Esta seguro que desea cancelar la orden?')"> Cancelar Orden</a>
+                <button type="submit" class="btn btn-success" >
+                    Continuar con orden
+                </button>
+            </div>
+        </form>
+    </div>    
+</div>
+
+{% endblock %}

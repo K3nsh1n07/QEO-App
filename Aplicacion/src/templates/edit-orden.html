@@ -1,0 +1,127 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="col-md-4 offset-md-4">
+    <div class="card card-body">
+        <form action="/update-orden/{{ordenes.0}}" method="post"> 
+          
+            <div class="form-group">
+                <label><strong>Numero de Orden:</strong> {{ ordenes.0}}</label>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Facturado:</strong></label>
+                {% if ordenes.5 == 0 %}
+                    No se encuentra facturado
+                    <select class="form-select" name="sFacturado">
+                        <option value="0">Sin facturar</option>
+                        <option value="1">Facturado</option>
+                      </select>
+                {% else %}
+                    Facturado
+                    <select hidden class="form-select" name="sFacturado">
+                        <option value="0">Sin facturar</option>
+                        <option value="1" selected>Facturado</option>
+                      </select>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label><strong> Estado entrega:</strong></label>
+                 <!-- si se encuentra entregado, poner en hidden el campo con value-->
+                    {% if ordenes.6 == 3 %}
+                        Entregado
+                        <select class="form-select" hidden name="sEntregado">
+                            <option value="1">Sin entregar</option>
+                            <option value="2">Pendiente a retirar</option>
+                            <option value="3" selected>Entregado</option>
+                        </select>
+                    {% endif %}
+                    {% if ordenes.6 == 2 %}
+                        <select class="form-select" name="sEntregado">
+                            <option value="1">Sin entregar</option>
+                            <option value="2" selected>Pendiente a retirar</option>
+                            <option value="3">Entregado</option>
+                        </select>
+                    {% endif %}
+                    {% if ordenes.6 == 1 %}
+                        <select class="form-select" name="sEntregado">
+                            <option value="1" selected>Sin entregar</option>
+                            <option value="2">Pendiente a retirar</option>
+                            <option value="3">Entregado</option>
+                        </select>
+                    {% endif %}
+            </div>
+            <div class="form-group"> 
+                <label><strong>Lugar de entrega:</strong></label>
+                <!--Si esta entregado,ocultar y dejar seleccionado el q estaba-->
+                {% if ordenes.6 == 3%}
+                    {{ ordenes.9}}
+                    <select class="form-select" hidden name="sLugarEntrega">
+                        {% if ordenes.8 == 1%}
+                            <option value="1" selected>Mostrador</option>
+                        {% endif %}
+                        {% if ordenes.8 == 2 %}
+                            <option value="2" selected>Barra</option>
+                        {% endif %}
+                        {% if ordenes.8 == 3 %}
+                            <option value="3" selected>Mesa Afuera 1</option>
+                        {% endif %}
+                        {% if ordenes.8 == 4 %}
+                            <option value="4" selected>Mesa Afuera 2</option>
+                        {% endif %}
+                        {% if ordenes.8 == 5 %}
+                            <option value="5" selected> Mesa Afuera 3</option>
+                        {% endif %}
+                    </select>
+                {% else %}
+                <!-- Todos estos if para dejar seleccionado el que ya estaba, horrible pero funciona-->
+                    <select class="form-select" name="sLugarEntrega">
+                        {% if ordenes.8 == 1 %}
+                            <option value="1" selected>Mostrador</option>
+                        {% else %}  
+                            <option value="1">Mostrador</option>
+                        {% endif %}   
+                        {% if ordenes.8 == 2 %}
+                            <option value="2" selected>Barra</option>
+                        {% else %}  
+                            <option value="2">Barra</option>
+                        {% endif %}   
+                        {% if ordenes.8 == 3 %}
+                            <option value="3" selected>Mesa Afuera 1</option>
+                        {% else %}  
+                            <option value="3">Mesa Afuera 1</option>
+                        {% endif %}   
+                        {% if ordenes.8 == 4 %}
+                            <option value="4" selected>Mesa Afuera 2</option>
+                        {% else %}
+                            <option value="4">Mesa Afuera 2</option>
+                        {% endif %}   
+                        {% if ordenes.8 == 5 %}
+                            <option value="5" selected>Mesa Afuera 3</option>
+                        {% else %}
+                            <option value="5">Mesa Afuera 3</option>
+                        {% endif %}   
+                    </select>
+                {% endif %}
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+                <button type="button" class="btn btn-danger" onclick="javascript:window.location='/listado_orden';">
+                    Regresar
+                </button>
+                {% if ordenes.5 == 1  and ordenes.6 == 3 %}
+                    <button type="submit" class="btn btn-success" hidden>
+                        Save
+                    </button>
+                {% else %}
+                    <button type="submit" class="btn btn-success">
+                        Save
+                    </button>
+                {% endif %}
+            </div>
+        </form>
+    </div>    
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                {% for mensaje in mensajes %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{mensaje}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <table class="table table-striped table-bordered bg-white table-sm">       
+            <thead>
+                <tr>
+                    <td>Descripcion</td>
+                    <td>Precio</td>
+                    <td>Cantidad</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <div class="card card body">
+                    <form action="/add_order" method="POST" onsubmit="return validarFormularioMenu();"> 
+                        <div class="form-group" >
+                            {% for menu in menuTupla %}
+                                <tr>
+                                    <!-- posicion en tupla de menu recorrida del listado de menu ()-->
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="hidden" name="idMenu" value="{{ menu.0}}"> 
+                                            <span><strong>{{ menu.1}}</strong></span><br><label class="">{{ menu.2}} </label>
+                                        </div>
+                                    </td>
+                                    <td><label class="form-control">{{ menu.3}}</label></td>
+                                       <td>
+                                        <div class="form-group">
+                                            <input type="number" name="iCantidad"  class="form-control" value="0">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="display:none">
+                                    <td colspan="3">
+                                        <div class="form-group">
+                                            <input type="text" name="txtComentarios"  class="form-control bg-white" placeholder="Ingrese comentarios">
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </div>   
+                        <tr>
+                            <td colspan="3">
+                                <div class="form-group">
+                                    <input type="hidden" name="idMesa" class="form-control" id="idMesa" value="">
+                                </div>
+                            </td>
+                        </tr>    
+                        <tr>
+                            <td colspan="3">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        Continuar
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>              
+                    </form>
+                </div>
+            </tbody>
+        </table>    
+    </div>
+</div>
+{% endblock %}

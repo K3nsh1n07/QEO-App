@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row">
+     <!-- tabla column de 5-->
+    <div class="col-md-12">
+        <!-- Traer mensajes de la app-->
+        {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                {% for mensaje in mensajes %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{mensaje}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    <!-- tabla column de 7-->
+    <div class="col-md-12">
+        <table class="table table-striped table-bordered bg-white table-sm">
+            <thead>
+                <tr>
+                    <td>Numero Orden</td>
+                    <td>Nombre Cliente</td>
+                    <td>Facturado</td>
+                    <td>Estado de Entrega</td>
+                    <td>Lugar de Entrega</td>
+                    <td>Operaciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for orden in ordenes %}
+                    <tr>
+                        <!-- posicion en tupla de cliente recorrida del listado de clientes (email,nombre,tel)-->
+                        <!-- Seria ideal llamarlo por los encabezados y no por orden de columna-->
+                        <td><strong >{{ orden.0 }}</strong></td>
+                        <td>{{ orden.10}}</td>
+                        <td>
+                            {% if orden.5 == 0 %}
+                                Pendiente Facturar
+                            {% endif %}
+                            {% if orden.5 == 1 %}
+                                Facturado
+                            {% endif %}
+                        </td>
+
+                        <!-- Me hubiera gustado usar un case-->
+                        <td>
+                            {% if orden.6 == 1 %}
+                                No se encuentra entregado
+                            {% endif %}
+                            {% if orden.6 == 2 %}
+                                Pendiente a retirar
+                            {% endif %}
+                            {% if orden.6 == 3 %}
+                                Entregado
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ orden.13}}
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" href="/edit-orden/{{orden.0}} ">Editar</a>
+                            <a class="btn btn-danger btn-delete" href="/delete-orden/{{orden.0}}">Borrar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
