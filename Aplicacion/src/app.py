@@ -247,7 +247,7 @@ def enviar_mail(email,OrdenId,NombreCompleto, tipoMail):
     #Queria usar un mail de gmil, pero no funcionaba el validador de telefono
     #Ideal ocultar la passwd con variable de entorno
     email_sender = 'pp3@jbanime.com'
-    email_passwd= 'ljZQq7L[Y@3i'
+    email_passwd= 'Srfl7Qf8ciWP2xx'
     email_receiver= email
     subjectName = NombreCompleto
     #parametros en tipoMail: altaOrden, estadoEntrega
