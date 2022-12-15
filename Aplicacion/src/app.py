@@ -137,9 +137,13 @@ def add_medioPago(id):
         
         #enviar mail
         tipoMail = 'altaOrden'
-        enviar_mail(email,numeroOrden,nombreCompleto,tipoMail)
+        try:
+            enviar_mail(email,numeroOrden,nombreCompleto,tipoMail)
+        except:
+            print("An exception occurred")   
         
-        flash('Gracias por su Pedido - Revise su correo electronico -El numero de pedido es: '+ numeroOrden )
+        #Se redirecciona a pantalla de agradecimiento no es falta esta notificacion
+        #flash('Gracias por su Pedido - Revise su correo electronico -El numero de pedido es: '+ numeroOrden )
        
         #return redirect(url_for('showMenu'))
         return render_template('ordenRecibida.html', ordenes = numeroOrden)
